@@ -31,16 +31,22 @@ const categoryData = news_id => {
 const categoryDataDisplay = newses => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
+    const newsFound = document.getElementById('news-found');
+    if (newses.length === 0) {
+        newsFound.classList.remove('d-none');
+    } else {
+        newsFound.classList.add('d-none');
+    }
     newses.forEach(news => {
 
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
             <div class="card">
-                <img class="img-fluid" src="${news ? news.thumbnail_url : 'No news found'}" class="card-img-top" alt="news-thumbnail">
+                <img class="img-fluid" src="${news.thumbnail_url ? news.thumbnail_url : 'No news found'}" class="card-img-top" alt="news-thumbnail">
                 <div class="card-body">
-                    <h5 class="card-title">${news ? news.title : 'No Title Found'}</h5>
-                    <p class="card-text text-truncate">${news ? news.details : 'No Description Found'}</p>
+                    <h5 class="card-title">${news.title ? news.title : 'No Title Found'}</h5>
+                    <p class="card-text text-truncate">${news.details ? news.details : 'No Description Found'}</p>
                 </div>
 
             <div class="d-flex justify-content-around align-items-center">
