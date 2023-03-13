@@ -2,9 +2,7 @@ const categoryLoad = () => {
     fetch(`https://openapi.programming-hero.com/api/news/categories`)
         .then(res => res.json())
         .then(data => categoryDisplay(data.data.news_category))
-        .catch(error => {
-            throw (error)
-        })
+        .catch(error => console.log(error))
 };
 
 const categoryDisplay = categories => {
@@ -53,13 +51,13 @@ const categoryDataDisplay = newses => {
                 <div class="d-flex align-items-center">
                     <img class="img-fluid author-img rounded-circle p-2" src="${news.author ? news.author.img : 'No Image Found'}" alt="">
                     <span>
-                    <h6>${news.author.name ? news.author.name : 'No Author Name found'}</h6>
+                    <h6>${news.author.name ? news.author.name : 'Author not Name found'}</h6>
                     <p class="m-0">${news.author ? news.author.published_date : 'Published Date not found'}</p>
                     </span>
                 </div>
                     <span class="d-flex align-items-center">
                         <i class="fa-solid fa-eye"></i>
-                        <p class="ps-2 m-0">${news.total_view}</p>
+                        <p class="ps-2 m-0">${news.total_view ? news.total_view : 'No views'}</p>
                     </span>
                     <button onclick="newsDetails('${news._id}')" class="border-0 px-3 py-1 rounded-pill" data-bs-toggle="modal" data-bs-target="#newsModalDetail">
                         <i class="fa-solid fa-arrow-right fs-5"></i>
@@ -91,26 +89,27 @@ const newsDetails = news_id => {
 };
 
 const newsDetailsDisplay = details => {
+    const newsModalDetailLabel = document.getElementById('newsModalDetailLabel');
+    newsModalDetailLabel.innerText = details.title;
     const newsModal = document.getElementById('news-modal');
     newsModal.innerHTML = `
-    <!-- Modal -->
-    <div class="modal fade" id="newsModalDetail" tabindex="-1" aria-labelledby="newsModalDetailLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="newsModalDetailLabel">${details.title ? details.title : 'No Title Found'}</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <img class="img-fluid w-100" src="${details.thumbnail_url ? details.thumbnail_url : 'No Thumbnail found'}" alt="thumbnail">
-            <p>${details.details ? details.details : 'No details found'}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+        <img class="img-fluid w-100"
+            src="${details.thumbnail_url ? details.thumbnail_url : 'No Thumbnail found'}" alt="thumbnail">
+            <p class="mt-3">${details.details ? details.details : 'No details found'}</p>
+            <div class="d-flex justify-content-between align-items-center bg-body-secondary rounded-3 px-3
+            ">
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid author-img rounded-circle p-2"src="${details.author ? details.author.img : 'No Image Found'}" alt="">
+                    <span>
+                        <h6>${details.author.name ? details.author.name : 'Author Name not found'}</h6>
+                        <p class="m-0">${details.author ? details.author.published_date : 'Published Date not found'}</p>
+                    </span>
+                </div>
+                <span class="d-flex align-items-center">
+                        <i class="fa-solid fa-eye"></i>
+                        <p class="ps-2 m-0">${details.total_view ? details.total_view : 'No views'}</p>
+                </span>
+            </div>
     `
     console.log(details)
 }

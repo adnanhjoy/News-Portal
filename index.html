@@ -18,7 +18,8 @@
         <section>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Navbar</a>
+                    <a class="navbar-brand fw-bold" href="#"><span
+                            class="bg-danger p-1 text-white rounded-2">Newsed</span> BD</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -41,11 +42,9 @@
             </nav>
         </section>
 
-
-
         <section>
             <div class="container">
-                <hr>
+                <hr class="m-0">
 
             </div>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -65,7 +64,6 @@
         </section>
     </header>
 
-
     <main class="mt-5">
         <div id="news-found" class="d-none">
             <h1 class="text-warning text-center">No News Found</h1>
@@ -81,8 +79,23 @@
             </div>
         </section>
 
-        <div id="news-modal">
+        <div>
+            <!-- Modal -->
+            <div class="modal fade" id="newsModalDetail" tabindex="-1" aria-labelledby="newsModalDetailLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="newsModalDetailLabel"></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div id="news-modal" class="modal-body">
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
 
     </main>
