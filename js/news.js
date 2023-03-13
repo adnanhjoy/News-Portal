@@ -27,6 +27,11 @@ const categoryData = news_id => {
 };
 
 const categoryDataDisplay = newses => {
+    let page = newses.length;
+    const categoryFound = document.getElementById('category-found');
+    categoryFound.innerHTML = `
+    <p class="px-3 py-3">${page} items found for category</p>
+    `
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
     const newsFound = document.getElementById('news-found');
@@ -111,7 +116,7 @@ const newsDetailsDisplay = details => {
                 </span>
             </div>
     `
-    console.log(details)
+    // console.log(details)
 }
 
 categoryData('08')
