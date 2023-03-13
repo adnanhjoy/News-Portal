@@ -15,9 +15,11 @@ const categoryDisplay = categories => {
         menuBar.appendChild(li);
         // console.log(category)
     })
+
 };
 
 const categoryData = news_id => {
+    newsLoader(true);
     fetch(`https://openapi.programming-hero.com/api/news/category/${news_id}`)
         .then(res => res.json())
         .then(data => categoryDataDisplay(data.data))
@@ -27,11 +29,12 @@ const categoryDataDisplay = newses => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
     newses.forEach(news => {
+
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
             <div class="card">
-                <img src="${news ? news.thumbnail_url : 'No news found'}" class="card-img-top" alt="news-thumbnail">
+                <img class="img-fluid" src="${news ? news.thumbnail_url : 'No news found'}" class="card-img-top" alt="news-thumbnail">
                 <div class="card-body">
                     <h5 class="card-title">${news ? news.title : 'No Title Found'}</h5>
                     <p class="card-text text-truncate">${news ? news.details : 'No Description Found'}</p>
@@ -58,6 +61,16 @@ const categoryDataDisplay = newses => {
         newsContainer.appendChild(div)
         console.log(news)
     })
+    newsLoader(false);
 };
+
+const newsLoader = isLoading => {
+    const loader = document.getElementById('loader');
+    if (isLoading) {
+        loader.classList.remove('d-none');
+    } else {
+        loader.classList.add('d-none');
+    }
+}
 categoryData('08')
 categoryLoad()
