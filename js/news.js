@@ -41,7 +41,6 @@ const categoryDataDisplay = newses => {
         newsFound.classList.add('d-none');
     }
     newses.forEach(news => {
-
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
@@ -57,7 +56,7 @@ const categoryDataDisplay = newses => {
                     <img class="img-fluid author-img rounded-circle p-2" src="${news.author ? news.author.img : 'No Image Found'}" alt="">
                     <span>
                     <h6>${news.author.name ? news.author.name : 'Author not Name found'}</h6>
-                    <p class="m-0">${news.author ? news.author.published_date : 'Published Date not found'}</p>
+                    <p class="m-0">${news.author.published_date ? news.author.published_date : 'Published Date not found'}</p>
                     </span>
                 </div>
                     <span class="d-flex align-items-center">
@@ -71,7 +70,7 @@ const categoryDataDisplay = newses => {
             </div>
         `;
         newsContainer.appendChild(div)
-        // console.log(news)
+        // console.log(newsView)
     })
     newsLoader(false);
 };
@@ -107,7 +106,7 @@ const newsDetailsDisplay = details => {
                     <img class="img-fluid author-img rounded-circle p-2"src="${details.author ? details.author.img : 'No Image Found'}" alt="">
                     <span>
                         <h6>${details.author.name ? details.author.name : 'Author Name not found'}</h6>
-                        <p class="m-0">${details.author ? details.author.published_date : 'Published Date not found'}</p>
+                        <p class="m-0">${details.author.published_date ? details.author.published_date : 'Published Date not found'}</p>
                     </span>
                 </div>
                 <span class="d-flex align-items-center">
