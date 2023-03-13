@@ -33,9 +33,25 @@ const categoryDataDisplay = newses => {
             <div class="card">
                 <img src="${news ? news.thumbnail_url : 'No news found'}" class="card-img-top" alt="news-thumbnail">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                        to additional content. This content is a little bit longer.</p>
+                    <h5 class="card-title">${news ? news.title : 'No Title Found'}</h5>
+                    <p class="card-text text-truncate">${news ? news.details : 'No Description Found'}</p>
+                </div>
+
+            <div class="d-flex justify-content-around align-items-center">
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid author-img rounded-circle p-2" src="${news.author ? news.author.img : 'No Image Found'}" alt="">
+                    <span>
+                    <h6>${news.author.name ? news.author.name : 'No Author Name found'}</h6>
+                    <p class="m-0">${news.author ? news.author.published_date : 'Published Date not found'}</p>
+                    </span>
+                </div>
+                    <span class="d-flex align-items-center">
+                        <i class="fa-solid fa-eye"></i>
+                        <p class="ps-2 m-0">${news.total_view}</p>
+                    </span>
+                    <span>
+                        <i class="fa-solid fa-arrow-right fs-5"></i>
+                    </span>
                 </div>
             </div>
         `;
@@ -43,4 +59,5 @@ const categoryDataDisplay = newses => {
         console.log(news)
     })
 };
+categoryData('08')
 categoryLoad()
