@@ -27,6 +27,7 @@ const categoryData = news_id => {
 };
 
 const categoryDataDisplay = newses => {
+    const sortData = newses.sort((a,b) => b.total_view - a.total_view)
     let page = newses.length;
     const categoryFound = document.getElementById('category-found');
     categoryFound.innerHTML = `
@@ -118,5 +119,5 @@ const newsDetailsDisplay = details => {
     // console.log(details)
 }
 
-categoryData('08')
+categoryData('01')
 categoryLoad()
